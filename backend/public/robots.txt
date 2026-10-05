@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /super_admin/
+Disallow: /api/
+
+Sitemap: /sitemap.xml

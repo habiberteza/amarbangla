@@ -1,0 +1,4 @@
+*.jpg
+!no_image.jpg
+!noImage.jpg
+!cat_no_image.jpg

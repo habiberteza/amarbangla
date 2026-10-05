@@ -1,0 +1,202 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Calling request</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('super_admin/shops')?>">Home</a></li>
+                        <li class="breadcrumb-item active">Calling request</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Calling request list</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="col-md-12" id="message">
+                                <?php echo  isset(newSession()->message) ? newSession()->message :''; ?>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4 ">
+                                    <form action="<?= base_url('super_admin/calling_request')?>" method="get">
+                                        <div class="row align-items-end">
+                                            <div class="col-md-5 mb-2">
+                                                <label for="varchar">Agent</label>
+                                                <select class="form-control form-control-sm" name="agent_id">
+                                                    <option value="">All Agents</option>
+                                                    <?php foreach ($agent as $row){ ?>
+                                                    <option value="<?= $row->agent_id;?>" <?= (!empty($selected_agent) && $selected_agent == $row->agent_id) ? 'selected' : ''; ?>><?= $row->agent_name;?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3 mb-2">
+                                                <label for="varchar">Status</label>
+                                                <select class="form-control form-control-sm" name="status">
+                                                    <option value="">All Statuses</option>
+                                                    <option value="Open" <?= (!empty($selected_status) && $selected_status == 'Open') ? 'selected' : ''; ?>>Open</option>
+                                                    <option value="Processing" <?= (!empty($selected_status) && $selected_status == 'Processing') ? 'selected' : ''; ?>>Processing</option>
+                                                    <option value="Complete" <?= (!empty($selected_status) && $selected_status == 'Complete') ? 'selected' : ''; ?>>Complete</option>
+                                                    <option value="Cancel" <?= (!empty($selected_status) && $selected_status == 'Cancel') ? 'selected' : ''; ?>>Cancel</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 mb-2">
+                                                <label>Per Page</label>
+                                                <select name="per_page" class="form-control form-control-sm">
+                                                    <option value="25" <?= (isset($per_page) && $per_page == 25) ? 'selected' : ''; ?>>25</option>
+                                                    <option value="50" <?= (isset($per_page) && $per_page == 50) ? 'selected' : ''; ?>>50</option>
+                                                    <option value="100" <?= (isset($per_page) && $per_page == 100) ? 'selected' : ''; ?>>100</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 mb-2 d-flex">
+                                                <button type="submit" class="btn btn-sm btn-primary mr-1"><i class="fas fa-search"></i> Filter</button>
+                                                <a href="<?= base_url('super_admin/calling_request'); ?>" class="btn btn-sm btn-secondary"><i class="fas fa-undo"></i></a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-6 border-left mb-4 ">
+                                    <form action="<?= base_url('super_admin/calling_search_address')?>" method="post">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="varchar">Division </label>
+                                                <select class="form-control" name="division" onchange="viewdistrict(this.value)" >
+                                                    <option value="">Please Select</option>
+                                                    <?php echo divisionView(); ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="varchar">District </label>
+                                                <select class="form-control" name="district" onchange="viewupazila(this.value)" id="district">
+                                                    <option value="">Please Select</option>
+                                                    <?php echo districtselect(); ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="varchar">Upazila </label>
+                                                <select class="form-control" name="upazila" id="upazila"
+                                                        onchange="checkCity(this.value)">
+                                                    <option value="">Please Select</option>
+                                                    <?php echo upazilaselect(); ?>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label for="varchar">Pourashava/Union
+                                                </label>
+                                                <select class="form-control" name="pourashava">
+                                                    <option value="">Please Select</option>
+                                                    <?php echo pourashavaUnion(); ?>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label for="varchar">Ward</label>
+                                                <select class="form-control" name="ward">
+                                                    <option value="">Please Select</option>
+                                                    <?php echo wardView(); ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="submit" class="btn btn-primary" style="margin-top: 30px;">
+                                                    Search
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                            <table id="calling_table" class="table table-bordered table-striped table-hover">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Description</th>
+                                    <th>Address</th>
+                                    <th>Image</th>
+                                    <th>Created Time</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php if (!empty($calling)) { foreach ($calling as $val){ $img = (!empty($val->image))?$val->image:'noImage.jpg'; ?>
+                                    <tr>
+                                        <td><?php echo $val->calling_id;?></td>
+                                        <td><?php echo get_data_by_id('customer_name','customers','customer_id',$val->customer_id);  ?></td>
+                                        <td><?php echo get_data_by_id('mobile','customers','customer_id',$val->customer_id); ?></td>
+                                        <td><?php echo $val->description ?></td>
+                                        <td>
+                                            <?php
+                                            $glAd = get_data_by_id('global_address_id','customers','customer_id',$val->customer_id);
+                                            if (!empty($glAd)){
+                                                $address = global_address_id_by_address($glAd);?>
+                                                <b>District:</b> <?php echo districtname($address->zila); ?>
+                                                <br><b>Upazila:</b> <?php echo upazilaname($address->upazila); ?>
+                                                <br><b>Pourashava/Union:</b> <?php echo pourashavaUnionName($address->pourashava); ?>
+                                                <br><b>Ward:</b> <?php echo getwardname($address->ward); ?>
+                                                <br><b>Home Address:</b> <?php echo get_data_by_id('address','customers','customer_id',$val->customer_id); ?><br>
+                                            <?php } else{ echo 'Address not found';} ?>
+                                        </td>
+                                        <td><a href='<?php echo  base_url('uploads/calling_request/').$img; ?>' target='_blank' ><?php echo image_view('uploads/calling_request', '', $val->image, 'noImage.jpg', 'img-25', ''); ?></a></td>
+                                        <td><?php echo invoiceDateFormat($val->createdDtm); ?></td>
+                                        <td width="180">
+                                            <select name="status" onchange="request_status(this.value,'<?php echo $val->calling_id;?>')" >
+                                                <option value="" >Please select</option>
+                                                <option value="Open" <?php echo ($val->status == 'Open')?'selected':''; ?> >Open</option>
+                                                <option value="Processing" <?php echo ($val->status == 'Processing')?'selected':''; ?> >Processing</option>
+                                                <option value="Complete" <?php echo ($val->status == 'Complete')?'selected':''; ?> >Complete</option>
+                                                <option value="Cancel" <?php echo ($val->status == 'Cancel')?'selected':''; ?>  >Cancel</option>
+                                            </select>
+
+                                        </td>
+                                    </tr>
+                                    </tr>
+                                <?php } } else { ?>
+                                    <tr>
+                                        <td colspan="8" class="text-center py-4 text-muted"><i class="fas fa-phone-slash fa-2x d-block mb-2"></i> No calling requests found.</td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+                            </div>
+                            <?php if (!empty($pager)) { ?>
+                                <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap">
+                                    <div class="text-muted small mb-2">
+                                        Showing page <?= $pager->getCurrentPage(); ?> of <?= $pager->getPageCount(); ?> (Total <?= number_format($pager->getTotal()); ?> requests)
+                                    </div>
+                                    <div>
+                                        <?= $pager->links(); ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

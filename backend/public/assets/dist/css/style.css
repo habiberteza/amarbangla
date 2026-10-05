@@ -1,0 +1,9 @@
+@import url('modern-saas-theme.css');
+
+.inner h3 {
+    font-size: 1.8rem !important;
+}
+
+.select2-container .select2-selection--single {
+    height: 38px !important;
+}

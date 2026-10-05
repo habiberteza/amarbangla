@@ -1,0 +1,947 @@
+/**
+ * Amar Bangla - Modern Clean SaaS Backend Theme
+ * Designed for Super Admin & Shop Admin Panels
+ * Provides Tailwind/Modern UI aesthetics:
+ * - Google Fonts: Plus Jakarta Sans / Inter
+ * - Sleek Dark Slate Sidebar (Slate 900 to 800)
+ * - Clean White Elevated Cards with subtle borders
+ * - Indigo & Blue Primary Accents
+ * - Modernized Tables, Badges, Buttons, Form Inputs, and KPI Widgets
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --saas-font: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --saas-primary: #2563eb;
+    --saas-primary-hover: #1d4ed8;
+    --saas-primary-light: #eff6ff;
+    --saas-sidebar-bg: #0f172a;
+    --saas-sidebar-surface: #1e293b;
+    --saas-sidebar-border: #334155;
+    --saas-sidebar-text: #94a3b8;
+    --saas-sidebar-hover: #f8fafc;
+    --saas-body-bg: #f8fafc;
+    --saas-card-bg: #ffffff;
+    --saas-card-border: #e2e8f0;
+    --saas-border-light: #f1f5f9;
+    --saas-text-heading: #0f172a;
+    --saas-text-body: #334155;
+    --saas-text-muted: #64748b;
+    --saas-radius-sm: 6px;
+    --saas-radius-md: 10px;
+    --saas-radius-lg: 14px;
+    --saas-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --saas-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --saas-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+}
+
+/* ==========================================================================
+   Base & Global Typography
+   ========================================================================== */
+body, .hold-transition, .wrapper {
+    font-family: var(--saas-font) !important;
+    background-color: var(--saas-body-bg) !important;
+    color: var(--saas-text-body) !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: var(--saas-font) !important;
+    font-weight: 700 !important;
+    color: var(--saas-text-heading) !important;
+    letter-spacing: -0.02em !important;
+}
+
+.content-wrapper {
+    background-color: var(--saas-body-bg) !important;
+    padding-bottom: 2rem !important;
+}
+
+.content-header {
+    padding: 20px 24px !important;
+}
+
+.content-header h1 {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: var(--saas-text-heading) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.breadcrumb {
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 13px !important;
+}
+
+.breadcrumb-item a {
+    color: var(--saas-primary) !important;
+    font-weight: 500 !important;
+}
+
+.breadcrumb-item.active {
+    color: var(--saas-text-muted) !important;
+}
+
+/* ==========================================================================
+   Modern Navbar
+   ========================================================================== */
+.main-header.navbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid var(--saas-card-border) !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.02) !important;
+    padding: 8px 16px !important;
+}
+
+.main-header .nav-link {
+    color: var(--saas-text-body) !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+    border-radius: var(--saas-radius-sm) !important;
+    transition: all 0.15s ease !important;
+}
+
+.main-header .nav-link:hover {
+    color: var(--saas-primary) !important;
+    background-color: var(--saas-primary-light) !important;
+}
+
+.navbar-badge {
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    padding: 3px 6px !important;
+    border-radius: 9999px !important;
+    top: 5px !important;
+    right: 4px !important;
+}
+
+/* Navbar search */
+.navbar-search-block {
+    background-color: #ffffff !important;
+    box-shadow: var(--saas-shadow-md) !important;
+    border-radius: var(--saas-radius-md) !important;
+}
+
+.form-control-navbar {
+    border-radius: 9999px !important;
+    border: 1px solid var(--saas-card-border) !important;
+    background-color: #f1f5f9 !important;
+    padding-left: 16px !important;
+    font-size: 13.5px !important;
+}
+
+.form-control-navbar:focus {
+    background-color: #ffffff !important;
+    border-color: var(--saas-primary) !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+}
+
+/* Cash & Transaction headers in Shop Admin */
+.main-header .btn-primary {
+    background-color: var(--saas-primary) !important;
+    border-color: var(--saas-primary) !important;
+    border-radius: 9999px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 6px 16px !important;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.25) !important;
+}
+
+.main-header .btn-info {
+    background-color: #0284c7 !important;
+    border-color: #0284c7 !important;
+    border-radius: 9999px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 6px 16px !important;
+}
+
+/* ==========================================================================
+   Sleek Dark Slate Sidebar (Tailwind Slate-900 / Slate-800)
+   ========================================================================== */
+.main-sidebar, .sidebar-dark-primary {
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 4px 0 20px 0 rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Brand Link */
+.brand-link {
+    background: #090d16 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 16px 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+.brand-link .brand-text {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    font-size: 1.15rem !important;
+    letter-spacing: -0.02em !important;
+}
+
+.brand-link::before {
+    content: "AB";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 13px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+    flex-shrink: 0;
+}
+
+/* User Panel */
+.sidebar .user-panel {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 14px 16px !important;
+    margin: 8px 12px 16px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: var(--saas-radius-md) !important;
+    align-items: center !important;
+}
+
+.sidebar .user-panel .image img {
+    border-radius: 50% !important;
+    border: 2px solid #3b82f6 !important;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4) !important;
+    width: 36px !important;
+    height: 36px !important;
+    object-fit: cover !important;
+}
+
+.sidebar .user-panel .info a {
+    color: #f8fafc !important;
+    font-weight: 600 !important;
+    font-size: 13.5px !important;
+}
+
+.sidebar .user-panel .info a:hover {
+    color: #60a5fa !important;
+}
+
+/* Sidebar Nav Pills */
+.sidebar .nav-sidebar .nav-item {
+    margin-bottom: 3px !important;
+}
+
+.sidebar .nav-sidebar .nav-link {
+    color: #94a3b8 !important;
+    font-weight: 500 !important;
+    font-size: 13.5px !important;
+    padding: 9px 14px !important;
+    border-radius: var(--saas-radius-sm) !important;
+    margin: 0 10px !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.sidebar .nav-sidebar .nav-link i.nav-icon {
+    font-size: 14px !important;
+    margin-right: 12px !important;
+    width: 18px !important;
+    text-align: center !important;
+    opacity: 0.8 !important;
+    transition: transform 0.2s ease, opacity 0.2s ease !important;
+}
+
+.sidebar .nav-sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+    transform: translateX(3px) !important;
+}
+
+.sidebar .nav-sidebar .nav-link:hover i.nav-icon {
+    opacity: 1 !important;
+    transform: scale(1.1) !important;
+    color: #60a5fa !important;
+}
+
+/* Active Nav Link */
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar .nav-sidebar .menu-open > .nav-link {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4) !important;
+}
+
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active i.nav-icon,
+.sidebar .nav-sidebar .menu-open > .nav-link i.nav-icon {
+    opacity: 1 !important;
+    color: #ffffff !important;
+}
+
+/* Treeview Submenus */
+.sidebar .nav-treeview {
+    padding-left: 12px !important;
+    margin-top: 4px !important;
+    margin-bottom: 6px !important;
+    border-left: 2px solid rgba(255, 255, 255, 0.08) !important;
+    margin-left: 24px !important;
+}
+
+.sidebar .nav-treeview .nav-link {
+    padding: 7px 12px !important;
+    font-size: 13px !important;
+    color: #cbd5e1 !important;
+    margin: 0 !important;
+}
+
+.sidebar .nav-treeview .nav-link:hover {
+    color: #60a5fa !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.sidebar .nav-treeview .nav-link.active {
+    background: rgba(37, 99, 235, 0.2) !important;
+    color: #93c5fd !important;
+    font-weight: 600 !important;
+    border-left: 3px solid #3b82f6 !important;
+}
+
+/* ==========================================================================
+   Clean Modern Cards & Containers
+   ========================================================================== */
+.card {
+    background-color: var(--saas-card-bg) !important;
+    border: 1px solid var(--saas-card-border) !important;
+    border-radius: var(--saas-radius-lg) !important;
+    box-shadow: var(--saas-shadow-md) !important;
+    margin-bottom: 24px !important;
+    overflow: hidden !important;
+    transition: box-shadow 0.2s ease !important;
+}
+
+.card:hover {
+    box-shadow: var(--saas-shadow-lg) !important;
+}
+
+/* Remove old harsh color outlines on cards */
+.card.card-outline,
+.card.card-primary,
+.card.card-info,
+.card.card-success {
+    border-top: 1px solid var(--saas-card-border) !important;
+}
+
+.card-header {
+    background-color: transparent !important;
+    border-bottom: 1px solid var(--saas-border-light) !important;
+    padding: 16px 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+}
+
+.card-title {
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: var(--saas-text-heading) !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.card-body {
+    padding: 24px !important;
+}
+
+.card-footer {
+    background-color: #fafbfc !important;
+    border-top: 1px solid var(--saas-border-light) !important;
+    padding: 16px 24px !important;
+}
+
+/* ==========================================================================
+   Modern SaaS Data Tables
+   ========================================================================== */
+.table-responsive {
+    border-radius: var(--saas-radius-md) !important;
+    border: 1px solid var(--saas-card-border) !important;
+    background-color: #ffffff !important;
+}
+
+.table {
+    margin-bottom: 0 !important;
+    color: var(--saas-text-body) !important;
+    width: 100% !important;
+}
+
+.table thead th,
+.table .thead-light th {
+    background-color: #f8fafc !important;
+    color: var(--saas-text-muted) !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    border-top: none !important;
+    border-bottom: 1px solid var(--saas-card-border) !important;
+    padding: 14px 18px !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+}
+
+.table tbody td {
+    padding: 14px 18px !important;
+    vertical-align: middle !important;
+    border-top: 1px solid var(--saas-border-light) !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    font-size: 13.5px !important;
+}
+
+.table tbody tr:hover {
+    background-color: #f8fafc !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fcfdfe !important;
+}
+
+.table-bordered {
+    border: none !important;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: none !important;
+    border-bottom: 1px solid var(--saas-border-light) !important;
+}
+
+/* Product & avatar thumbnails in tables */
+.table img {
+    border-radius: 8px !important;
+    object-fit: cover !important;
+    box-shadow: var(--saas-shadow-sm) !important;
+    border: 1px solid var(--saas-card-border) !important;
+}
+
+/* ==========================================================================
+   Modern SaaS Buttons
+   ========================================================================== */
+.btn {
+    font-family: var(--saas-font) !important;
+    font-weight: 600 !important;
+    font-size: 13.5px !important;
+    padding: 8px 16px !important;
+    border-radius: var(--saas-radius-sm) !important;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    box-shadow: var(--saas-shadow-sm) !important;
+}
+
+.btn:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: var(--saas-shadow-md) !important;
+}
+
+.btn:active {
+    transform: translateY(0) !important;
+}
+
+.btn-primary {
+    background-color: #2563eb !important;
+    border-color: #2563eb !important;
+    color: #ffffff !important;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8 !important;
+    border-color: #1d4ed8 !important;
+}
+
+.btn-success {
+    background-color: #16a34a !important;
+    border-color: #16a34a !important;
+    color: #ffffff !important;
+}
+
+.btn-success:hover {
+    background-color: #15803d !important;
+    border-color: #15803d !important;
+}
+
+.btn-danger {
+    background-color: #dc2626 !important;
+    border-color: #dc2626 !important;
+    color: #ffffff !important;
+}
+
+.btn-danger:hover {
+    background-color: #b91c1c !important;
+    border-color: #b91c1c !important;
+}
+
+.btn-info {
+    background-color: #0284c7 !important;
+    border-color: #0284c7 !important;
+    color: #ffffff !important;
+}
+
+.btn-info:hover {
+    background-color: #0369a1 !important;
+    border-color: #0369a1 !important;
+}
+
+.btn-warning {
+    background-color: #d97706 !important;
+    border-color: #d97706 !important;
+    color: #ffffff !important;
+}
+
+.btn-warning:hover {
+    background-color: #b45309 !important;
+    border-color: #b45309 !important;
+}
+
+.btn-secondary {
+    background-color: #64748b !important;
+    border-color: #64748b !important;
+    color: #ffffff !important;
+}
+
+.btn-secondary:hover {
+    background-color: #475569 !important;
+    border-color: #475569 !important;
+}
+
+.btn-xs {
+    padding: 4px 10px !important;
+    font-size: 11.5px !important;
+    border-radius: 5px !important;
+}
+
+.btn-sm {
+    padding: 6px 12px !important;
+    font-size: 12.5px !important;
+    border-radius: 6px !important;
+}
+
+/* ==========================================================================
+   Modern SaaS Badges (Soft Pastel with Vibrant Text)
+   ========================================================================== */
+.badge, .label {
+    padding: 4px 10px !important;
+    border-radius: 9999px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    line-height: 1.2 !important;
+}
+
+.badge-success {
+    background-color: #dcfce7 !important;
+    color: #15803d !important;
+    border: 1px solid #bbf7d0 !important;
+}
+
+.badge-danger {
+    background-color: #fee2e2 !important;
+    color: #b91c1c !important;
+    border: 1px solid #fecaca !important;
+}
+
+.badge-warning {
+    background-color: #fef3c7 !important;
+    color: #b45309 !important;
+    border: 1px solid #fde68a !important;
+}
+
+.badge-info {
+    background-color: #e0f2fe !important;
+    color: #0369a1 !important;
+    border: 1px solid #bae6fd !important;
+}
+
+.badge-primary {
+    background-color: #eff6ff !important;
+    color: #1d4ed8 !important;
+    border: 1px solid #bfdbfe !important;
+}
+
+.badge-secondary {
+    background-color: #f1f5f9 !important;
+    color: #475569 !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+/* ==========================================================================
+   Modern Form Inputs
+   ========================================================================== */
+.form-group label {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--saas-text-heading) !important;
+    margin-bottom: 6px !important;
+}
+
+.form-control, select.form-control {
+    border: 1px solid #cbd5e1 !important;
+    border-radius: var(--saas-radius-sm) !important;
+    padding: 9px 14px !important;
+    font-size: 13.5px !important;
+    color: var(--saas-text-heading) !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02) !important;
+    transition: all 0.15s ease !important;
+    height: auto !important;
+}
+
+.form-control:focus {
+    border-color: var(--saas-primary) !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+    outline: none !important;
+}
+
+.form-control::placeholder {
+    color: #94a3b8 !important;
+}
+
+/* Select2 Modernization */
+.select2-container--bootstrap4 .select2-selection--single,
+.select2-container .select2-selection--single {
+    border: 1px solid #cbd5e1 !important;
+    border-radius: var(--saas-radius-sm) !important;
+    height: 40px !important;
+    padding: 6px 12px !important;
+    font-size: 13.5px !important;
+    background-color: #ffffff !important;
+}
+
+.select2-container--bootstrap4.select2-container--focus .select2-selection {
+    border-color: var(--saas-primary) !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+}
+
+.select2-dropdown {
+    border: 1px solid var(--saas-card-border) !important;
+    border-radius: var(--saas-radius-md) !important;
+    box-shadow: var(--saas-shadow-lg) !important;
+    font-size: 13.5px !important;
+}
+
+/* ==========================================================================
+   Modern Stat & KPI Widgets (.small-box, .info-box)
+   ========================================================================== */
+.small-box {
+    border-radius: var(--saas-radius-lg) !important;
+    box-shadow: var(--saas-shadow-md) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    overflow: hidden !important;
+    margin-bottom: 24px !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    position: relative !important;
+}
+
+.small-box:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: var(--saas-shadow-lg) !important;
+}
+
+.small-box .inner {
+    padding: 22px 24px !important;
+}
+
+.small-box .inner h3 {
+    font-size: 2rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.03em !important;
+    margin-bottom: 4px !important;
+}
+
+.small-box .inner p {
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
+    opacity: 0.9 !important;
+    margin-bottom: 0 !important;
+}
+
+.small-box .icon {
+    top: 18px !important;
+    right: 20px !important;
+    font-size: 55px !important;
+    opacity: 0.25 !important;
+    transition: all 0.3s ease !important;
+}
+
+.small-box:hover .icon {
+    font-size: 60px !important;
+    opacity: 0.35 !important;
+}
+
+.small-box-footer {
+    padding: 8px 16px !important;
+    background: rgba(0, 0, 0, 0.12) !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    transition: background 0.15s ease !important;
+}
+
+.small-box-footer:hover {
+    background: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Gradients for KPI boxes */
+.bg-info {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+}
+
+.bg-success {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%) !important;
+}
+
+.bg-warning {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+    color: #ffffff !important;
+}
+
+.bg-warning .inner h3,
+.bg-warning .inner p {
+    color: #ffffff !important;
+}
+
+.bg-danger {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+}
+
+/* ==========================================================================
+   Modern Pagination (.pagination)
+   ========================================================================== */
+.pagination {
+    display: flex !important;
+    gap: 4px !important;
+    margin: 0 !important;
+    align-items: center !important;
+}
+
+.pagination .page-item .page-link {
+    border-radius: var(--saas-radius-sm) !important;
+    border: 1px solid var(--saas-card-border) !important;
+    color: var(--saas-text-body) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 7px 14px !important;
+    background-color: #ffffff !important;
+    transition: all 0.15s ease !important;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--saas-primary) !important;
+    border-color: var(--saas-primary) !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3) !important;
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #f1f5f9 !important;
+    color: var(--saas-primary) !important;
+}
+
+/* ==========================================================================
+   Modern Alerts
+   ========================================================================== */
+.alert {
+    border-radius: var(--saas-radius-md) !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    padding: 14px 20px !important;
+    border: 1px solid transparent !important;
+    box-shadow: var(--saas-shadow-sm) !important;
+}
+
+.alert-success {
+    background-color: #f0fdf4 !important;
+    border-color: #bbf7d0 !important;
+    color: #166534 !important;
+}
+
+.alert-danger {
+    background-color: #fef2f2 !important;
+    border-color: #fecaca !important;
+    color: #991b1b !important;
+}
+
+.alert-warning {
+    background-color: #fffbeb !important;
+    border-color: #fde68a !important;
+    color: #92400e !important;
+}
+
+.alert-info {
+    background-color: #f0f9ff !important;
+    border-color: #bae6fd !important;
+    color: #075985 !important;
+}
+
+/* ==========================================================================
+   Modern Footer
+   ========================================================================== */
+.main-footer {
+    background-color: #ffffff !important;
+    border-top: 1px solid var(--saas-card-border) !important;
+    color: var(--saas-text-muted) !important;
+    font-size: 13px !important;
+    padding: 18px 24px !important;
+}
+
+.main-footer strong, .main-footer a {
+    color: var(--saas-text-heading) !important;
+    font-weight: 600 !important;
+}
+
+.main-footer a:hover {
+    color: var(--saas-primary) !important;
+}
+
+/* ==========================================================================
+   Clean Custom Scrollbar
+   ========================================================================== */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.4);
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 116, 139, 0.7);
+}
+
+/* ==========================================================================
+   Modern SaaS Login Pages
+   ========================================================================== */
+.login-page {
+    background: radial-gradient(circle at top left, #1e293b, #0f172a) !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.login-box {
+    width: 420px !important;
+    max-width: 90% !important;
+    margin: 0 auto !important;
+}
+
+.login-logo {
+    margin-bottom: 24px !important;
+}
+
+.login-logo a {
+    color: #ffffff !important;
+    font-size: 1.6rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+}
+
+.login-logo a b {
+    color: #60a5fa !important;
+    display: block !important;
+    font-size: 1.8rem !important;
+    margin-bottom: 2px !important;
+}
+
+.login-box .card {
+    background: rgba(30, 41, 59, 0.85) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+    color: #f1f5f9 !important;
+}
+
+.login-card-body {
+    background: transparent !important;
+    padding: 32px !important;
+}
+
+.login-box-msg {
+    color: #94a3b8 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    margin-bottom: 24px !important;
+    padding: 0 !important;
+}
+
+.login-box .form-control {
+    background: rgba(15, 23, 42, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    border-radius: 10px 0 0 10px !important;
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+}
+
+.login-box .form-control:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25) !important;
+}
+
+.login-box .input-group-text {
+    background: rgba(15, 23, 42, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-left: none !important;
+    border-radius: 0 10px 10px 0 !important;
+    color: #94a3b8 !important;
+}
+
+.login-box .btn-primary {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 12px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.02em !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4) !important;
+    width: 100% !important;
+    margin-top: 10px !important;
+}
+
+.login-box .btn-primary:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.5) !important;
+}
+
